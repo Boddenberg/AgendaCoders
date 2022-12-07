@@ -1,4 +1,6 @@
-##Washington Ferreira
-##Filipe Boddenberg
-##Murilo Schmalfuss
-##Renan Araújo
+#### REFATORAR
+
+- **Washington Ferreira
+- **Filipe Boddenberg
+- **Murilo Schmalfuss
+- **Renan Araújo
