@@ -1,4 +1,4 @@
-#### REFATORAR
+#### Nomes do grupo
 
 - Washington Ferreira
 - Filipe Boddenberg
