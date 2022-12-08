@@ -5,7 +5,8 @@ import coders.agenda.Utils.Errors.NotNullable;
 import java.util.Scanner;
 
 public class Input {
-    public static String string() {
+    public static String string(String nomeDoCampo) {
+        System.out.printf("Por favor informe o %s\n", nomeDoCampo);
         return new Scanner(System.in).nextLine().trim();
     }
 
@@ -18,8 +19,7 @@ public class Input {
             isInvalid = false;
 
             try {
-                System.out.printf("Por favor informe o %s\n", nomeDoCampo);
-                input = new Scanner(System.in).nextLine().trim();
+                input = string(nomeDoCampo);
 
                 if (input.isBlank()) throw new NotNullable(nomeDoCampo);
 
@@ -41,7 +41,7 @@ public class Input {
         return input;
     }
 
-    public static int integer(){
+    public static int integer() {
         return new Scanner(System.in).nextInt();
     }
 

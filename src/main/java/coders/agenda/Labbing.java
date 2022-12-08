@@ -1,5 +1,6 @@
 package coders.agenda;
 
+import coders.agenda.Utils.Input;
 import coders.agenda.Utils.menuCreator;
 
 public class Labbing {
@@ -13,6 +14,12 @@ public class Labbing {
             if(teste == 0){
                 System.out.println("voltaondo ao menu anterior...");
             }
+
+            String inputStringTeste = Input.string("nome");
+            System.out.println(inputStringTeste);
+
+            String inputNotNullableStringTeste = Input.stringNotNullable("teste de string", 5);
+            System.out.println(inputNotNullableStringTeste);
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
