@@ -41,4 +41,8 @@ public class Input {
         return input;
     }
 
+    public static int integer(){
+        return new Scanner(System.in).nextInt();
+    }
+
 }
