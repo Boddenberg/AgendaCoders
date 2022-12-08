@@ -18,7 +18,7 @@ public class Input {
             isInvalid = false;
 
             try {
-                System.out.printf("Por favor informe o %s", nomeDoCampo);
+                System.out.printf("Por favor informe o %s\n", nomeDoCampo);
                 input = new Scanner(System.in).nextLine().trim();
 
                 if (input.isBlank()) throw new NotNullable(nomeDoCampo);
@@ -27,12 +27,12 @@ public class Input {
             } catch (NotNullable ex) {
                 tentadas += 1;
 
-                System.out.printf("msg: %s, code: %s. tente novamente", ex.getMessage(), ex.getCode());
+                System.out.printf("msg: %s, code: %s. tente novamente\n", ex.getMessage(), ex.getCode());
                 if (tentadas < tentativas) {
                     isInvalid = true;
                     continue;
                 }
-                
+
                 throw new Exception("Número de tentativas excedidas");
             }
 
