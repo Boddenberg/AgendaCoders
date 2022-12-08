@@ -1,6 +1,6 @@
 package coders.agenda.Models;
 
-import agenda_contatos.Enums.TipoContato;
+import coders.agenda.Enums.TipoContato;
 
 import java.util.List;
 

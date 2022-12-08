@@ -1,7 +1,7 @@
 package coders.agenda.Models;
 
-import agenda_contatos.Enums.TipoEndereco;
-import agenda_contatos.Helpers.Errors.InvalidParams;
+import coders.agenda.Enums.TipoEndereco;
+import coders.agenda.Utils.Errors.InvalidParams;
 
 import java.util.List;
 

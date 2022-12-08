@@ -1,6 +1,6 @@
 package coders.agenda.Models;
 
-import agenda_contatos.Enums.TipoTelefone;
+import coders.agenda.Enums.TipoTelefone;
 
 public class Telefone {
     private TipoTelefone tipoTelefone;
