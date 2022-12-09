@@ -24,8 +24,6 @@ public class Agenda {
 
     public static void main(String[] args) throws IOException {
         criarArquivo();
-
-
         try {
             mockingContacts("Washington", "Ferreira");
             mockingContacts("Pedro", "Ferreira");
@@ -35,6 +33,7 @@ public class Agenda {
         }
 
 //        System.out.println(contatos.get(0).getTipoContato().toString());
+        //https://ourcodeworld.com/articles/read/836/how-to-work-with-json-easily-in-java
 
         AddToBase();
         readFromFile();
@@ -88,10 +87,24 @@ public class Agenda {
             for (int i = 0; i < data.size(); i++) {
                 JSONObject contato = new JSONObject(data.get(i));
                 System.out.println(contato.get("tipoContato"));
+                System.out.println(contato.get("nome"));
+                System.out.println(contato.get("sobrenome"));
+
+                String enderecos = contato.get("enderecos").toString();
+                JSONArray myJson = new JSONArray(enderecos);
+
+                for (int j = 0; j < myJson.length(); j++) {
+                    JSONObject endereco = new JSONObject(myJson.get(j).toString());
+
+                    System.out.println(endereco.get("logradouro"));
+                }
+
+
+                System.out.println("");
             }
 
         } catch (Exception ex) {
-
+            System.out.println(ex.getMessage());
         }
 
     }
