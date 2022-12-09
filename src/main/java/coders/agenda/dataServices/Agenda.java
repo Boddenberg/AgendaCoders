@@ -90,8 +90,7 @@ public class Agenda {
                 System.out.println(contato.get("nome"));
                 System.out.println(contato.get("sobrenome"));
 
-                String enderecos = contato.get("enderecos").toString();
-                JSONArray myJson = new JSONArray(enderecos);
+                JSONArray myJson = new JSONArray(contato.get("enderecos").toString());
 
                 for (int j = 0; j < myJson.length(); j++) {
                     JSONObject endereco = new JSONObject(myJson.get(j).toString());
