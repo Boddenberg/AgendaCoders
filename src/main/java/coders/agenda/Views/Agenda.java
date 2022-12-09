@@ -157,7 +157,6 @@ public class Agenda {
                 if (typeOption < 0 || typeOption >= TipoTelefone.values().length)
                     throw new InvalidParams("tipo do contato");
 
-
                 TipoTelefone tipoTelefone = TipoTelefone.Celular;
 
                 for (TipoTelefone type : TipoTelefone.values()) {
@@ -322,6 +321,25 @@ public class Agenda {
     }
 
     private static void listarContatos() {
+
+        boolean isInvalid;
+        int requestPool = 0;
+        do {
+            isInvalid = false;
+
+            if (requestPool >= 3) {
+                break;
+            }
+
+            try {
+                //Chamar contatos. toString
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+                requestPool += 1;
+                isInvalid = true;
+            }
+        } while (isInvalid);
+
     }
 
     private static void listarContatosPorNome() {
