@@ -201,8 +201,15 @@ public class Agenda {
                 }
 
 
+            } catch (InvalidParams ex) {
+                System.out.println(ex.getMessage());
+                isInvalid = true;
+
             } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+                isInvalid = true;
             }
+
         } while (isInvalid);
 
 
@@ -301,7 +308,13 @@ public class Agenda {
                 }
 
 
+            } catch (InvalidParams ex) {
+                System.out.println(ex.getMessage());
+                isInvalid = true;
+
             } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+                isInvalid = true;
             }
         } while (isInvalid);
     }
