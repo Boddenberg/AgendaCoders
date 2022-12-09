@@ -107,6 +107,8 @@ public class Agenda {
                         System.out.print("==== Opção inválida ====\n");
                 }
 
+                //cadastro de telefone
+
                 int newContactPhone = menuCreator.exec("Deseja cadastrar um endereço?", "sim", "não");
 
                 switch (newContactPhone) {
