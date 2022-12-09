@@ -25,7 +25,7 @@ public class menuCreator {
                 chooseYourDestiny = Input.integer();
                 System.out.println("");
 
-                if (chooseYourDestiny >= options.length) throw new InvalidParams("menuOption");
+                if (chooseYourDestiny < 0 || chooseYourDestiny >= options.length) throw new InvalidParams("menuOption");
 
             } catch (Exception ex) {
                 tentadas += 1;

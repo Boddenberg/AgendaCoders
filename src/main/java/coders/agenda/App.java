@@ -1,7 +1,9 @@
 package coders.agenda;
 
+import coders.agenda.Views.Agenda;
+
 public class App {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        Agenda.UI();
     }
 }
