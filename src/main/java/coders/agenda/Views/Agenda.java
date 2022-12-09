@@ -250,6 +250,9 @@ public class Agenda {
                     String email = Input.stringNotNullable("email", 3);
                     if (!email.matches("^(.+)@(\\S+)$")) throw new InvalidParams(email);
 
+                    List<String> emails = new ArrayList<>();
+                    emails.add(email);
+
                     Endereco enderecoVirtual = new Endereco(tipoEndereco, email);
                     enderecos.add(enderecoVirtual);
 
