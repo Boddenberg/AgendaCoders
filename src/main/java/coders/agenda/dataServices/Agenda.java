@@ -10,6 +10,7 @@ import coders.agenda.Utils.Errors.InvalidParams;
 import org.json.*;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -19,7 +20,7 @@ import java.util.List;
 public class Agenda {
     static JSONArray myObject = new JSONArray();
     static List<Contato> contatos = new ArrayList<>();
-    private static Path dbProduto = Paths.get("src/main/java/coders/agenda/Database/Agenda.txt");
+    private static Path dbContato = Paths.get("src/main/java/coders/agenda/Database/Agenda.txt");
 
     public static void main(String[] args) throws IOException {
         criarArquivo();
@@ -36,6 +37,7 @@ public class Agenda {
 //        System.out.println(contatos.get(0).getTipoContato().toString());
 
         AddToBase();
+        readFromFile();
 
 
     }
@@ -71,22 +73,37 @@ public class Agenda {
             myObject.put("telefones", uTemp.getTelefones());
 
             contatosString.add(myObject.toString());
+        }
 
+        Files.write(dbContato, contatosString);
+        System.out.print("Dados gravados com sucesso\n\n");
+    }
+
+    private static void readFromFile() throws IOException {
+        List<String> contatosString = new ArrayList<>();
+
+        try {
+            List<String> data = Files.readAllLines(dbContato, StandardCharsets.UTF_8);
+
+            for (int i = 0; i < data.size(); i++) {
+                JSONObject contato = new JSONObject(data.get(i));
+                System.out.println(contato.get("tipoContato"));
+            }
+
+        } catch (Exception ex) {
 
         }
 
-        Files.write(dbProduto, contatosString);
-        System.out.print("Dados gravados com sucesso\n\n");
     }
 
     private static void criarArquivo() {
 
         try {
-            if (Files.exists(dbProduto)) {
+            if (Files.exists(dbContato)) {
                 System.out.println("Arquivo ja existe");
             } else {
-                dbProduto = Files.createFile(dbProduto);
-                System.out.println("Arquivo criado em: " + dbProduto.toString());
+                dbContato = Files.createFile(dbContato);
+                System.out.println("Arquivo criado em: " + dbContato.toString());
             }
 
         } catch (Exception e) {
