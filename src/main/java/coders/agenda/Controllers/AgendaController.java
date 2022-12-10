@@ -1,7 +1,9 @@
 package coders.agenda.Controllers;
 
 import coders.agenda.Models.Contato;
+import coders.agenda.dataServices.AgendaDAO;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,8 +15,8 @@ public class AgendaController {
         this.contatos = new ArrayList<>();
     }
 
-    public void adicionarContato(Contato contato) {
-        contatos.add(contato);
+    public void adicionarContato(Contato contato) throws IOException {
+        new AgendaDAO().AddToBase(contato);
     }
 
 
@@ -22,12 +24,13 @@ public class AgendaController {
         contatos.remove(contato);
     }
 
-    public void excluirTodosContatos(){
+    public void excluirTodosContatos() {
         contatos.clear();
     }
 
-    public List<Contato> pesquisarNome(String nome) {
+    public List<Contato> pesquisarNome(String nome) throws IOException {
         List<Contato> contatosEncontrados = new ArrayList<>();
+        List<Contato> contatos = new AgendaDAO().pegarDados();
         for (int i = 0; i < contatos.size(); i++) {
             if (contatos.get(i).getNome().contains(nome)) {
                 contatosEncontrados.add(contatos.get(i));
@@ -66,7 +69,6 @@ public class AgendaController {
         }
         return contatosEncontrados;
     }
-
 
 
 }

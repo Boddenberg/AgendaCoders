@@ -17,31 +17,31 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Agenda {
-    static JSONArray myObject = new JSONArray();
-    static List<Contato> contatos = new ArrayList<>();
-    private static Path dbContato = Paths.get("src/main/java/coders/agenda/Database/Agenda.txt");
+public class AgendaDAO {
+     JSONArray myObject = new JSONArray();
+     List<Contato> contatos = new ArrayList<>();
+    private Path dbContato = Paths.get("src/main/java/coders/agenda/Database/Agenda.txt");
 
-    public static void main(String[] args) throws IOException {
-        criarArquivo();
-        try {
-            mockingContacts("Washington", "Ferreira");
-            mockingContacts("Pedro", "Ferreira");
-            mockingContacts("Elza", "Santos");
-        } catch (InvalidParams e) {
-            throw new RuntimeException(e);
-        }
+//    public static void main(String[] args) throws IOException {
+//        criarArquivo();
+//        try {
+//            mockingContacts("Washington", "Ferreira");
+//            mockingContacts("Pedro", "Ferreira");
+//            mockingContacts("Elza", "Santos");
+//        } catch (InvalidParams e) {
+//            throw new RuntimeException(e);
+//        }
+//
+////        System.out.println(contatos.get(0).getTipoContato().toString());
+//        //https://ourcodeworld.com/articles/read/836/how-to-work-with-json-easily-in-java
+//
+//        AddToBase();
+//        readFromFile();
+//
+//
+//    }
 
-//        System.out.println(contatos.get(0).getTipoContato().toString());
-        //https://ourcodeworld.com/articles/read/836/how-to-work-with-json-easily-in-java
-
-        AddToBase();
-        readFromFile();
-
-
-    }
-
-    private static void mockingContacts(String nome, String Sobrenome) throws InvalidParams {
+    private  void mockingContacts(String nome, String Sobrenome) throws InvalidParams {
         List<Telefone> telefones = new ArrayList<>();
         List<Endereco> endereços = new ArrayList<>();
 
@@ -57,28 +57,24 @@ public class Agenda {
         contatos.add(mock);
     }
 
-    private static void AddToBase() throws IOException {
+    public  void AddToBase(Contato contatos) throws IOException {
         List<String> contatosString = new ArrayList<>();
-
-        for (int i = 0; i < contatos.size(); i++) {
             JSONObject myObject = new JSONObject();
-            Contato uTemp = contatos.get(i);
 
-            myObject.put("nome", uTemp.getNome());
-            myObject.put("sobrenome", uTemp.getSobreNome());
-            myObject.put("tipoContato", uTemp.getTipoContato());
+        myObject.put("nome", contatos.getNome());
+        myObject.put("sobrenome", contatos.getSobreNome());
+        myObject.put("tipoContato", contatos.getTipoContato());
 
-            myObject.put("enderecos", uTemp.getEnderecos());
-            myObject.put("telefones", uTemp.getTelefones());
+        myObject.put("enderecos", contatos.getEnderecos());
+        myObject.put("telefones", contatos.getTelefones());
 
-            contatosString.add(myObject.toString());
-        }
+        contatosString.add(myObject.toString());
 
         Files.write(dbContato, contatosString);
         System.out.print("Dados gravados com sucesso\n\n");
     }
 
-    private static List<Contato> readFromFile() throws IOException {
+    public   List<Contato> pegarDados() throws IOException {
         List<Contato> contatosString = new ArrayList<>();
 
         try {
@@ -146,7 +142,19 @@ public class Agenda {
 
     }
 
-    private static void criarArquivo() {
+    public void excluirContato(Contato contato) throws IOException {
+        List<Contato> contatos = pegarDados();
+
+        //pegar o contato na lista
+
+//        Files.write(contatos);
+    }
+
+    //Metodo de excluir todos os contatos
+    
+    
+
+    private  void criarArquivo() {
 
         try {
             if (Files.exists(dbContato)) {
