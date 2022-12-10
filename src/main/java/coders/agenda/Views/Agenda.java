@@ -81,7 +81,6 @@ public class Agenda {
                 if (typeOption < 0 || typeOption >= TipoContato.values().length)
                     throw new InvalidParams("tipo do contato");
 
-
                 TipoContato contactType = TipoContato.Pessoal;
 
                 for (TipoContato type : TipoContato.values()) {
@@ -248,7 +247,6 @@ public class Agenda {
 
                 if (tipoEndereco.equals(TipoEndereco.Virtual)) {
                     String email = Input.stringNotNullable("email", 3);
-                    if (!email.matches("^(.+)@(\\S+)$")) throw new InvalidParams(email);
 
                     List<String> emails = new ArrayList<>();
                     emails.add(email);
