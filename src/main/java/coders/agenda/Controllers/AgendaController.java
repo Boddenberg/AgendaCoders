@@ -20,12 +20,12 @@ public class AgendaController {
     }
 
 
-    public void excluirContato(Contato contato) {
-        contatos.remove(contato);
+    public void excluirContato(Contato contato) throws IOException {
+        new AgendaDAO().excluirContato(contato);
     }
 
     public void excluirTodosContatos() {
-        contatos.clear();
+//        new AgendaDAO().excluirTodosContatos();
     }
 
     public List<Contato> pesquisarNome(String nome) throws IOException {
