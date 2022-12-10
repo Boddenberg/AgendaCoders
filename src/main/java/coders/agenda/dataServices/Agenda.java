@@ -78,26 +78,65 @@ public class Agenda {
         System.out.print("Dados gravados com sucesso\n\n");
     }
 
-    private static void readFromFile() throws IOException {
-        List<String> contatosString = new ArrayList<>();
+    private static List<Contato> readFromFile() throws IOException {
+        List<Contato> contatosString = new ArrayList<>();
 
         try {
             List<String> data = Files.readAllLines(dbContato, StandardCharsets.UTF_8);
 
             for (int i = 0; i < data.size(); i++) {
+
+                List<Endereco> enderecos = new ArrayList<>();
+                List<Telefone> telefones = new ArrayList<>();
+
                 JSONObject contato = new JSONObject(data.get(i));
-                System.out.println(contato.get("tipoContato"));
-                System.out.println(contato.get("nome"));
+                System.out.println();
+                System.out.println(c);
                 System.out.println(contato.get("sobrenome"));
 
-                JSONArray myJson = new JSONArray(contato.get("enderecos").toString());
+                JSONArray getEnderecos = new JSONArray(contato.get("enderecos").toString());
+                for (int j = 0; j < getEnderecos.length(); j++) {
+                    JSONObject endereco = new JSONObject(getEnderecos.get(j).toString());
 
-                for (int j = 0; j < myJson.length(); j++) {
-                    JSONObject endereco = new JSONObject(myJson.get(j).toString());
+                    Endereco novoEndereco = new Endereco(
+                            TipoEndereco.Residencial,
+                            endereco.get("logradouro").toString(),
+                            endereco.get("numero").toString(),
+                            endereco.get("complemento").toString(),
+                            endereco.get("nairro").toString(),
+                            endereco.get("cidade").toString(),
+                            endereco.get("uf").toString(),
+                            endereco.get("cep").toString(),
+                            endereco.get("pais").toString()
+                    );
 
-                    System.out.println(endereco.get("logradouro"));
+                    enderecos.add(novoEndereco);
+
+                    System.out.println(endereco.names());
+
                 }
 
+                JSONArray myJson = new JSONArray(contato.get("telefones").toString());
+                for (int k = 0; k < myJson.length(); k++) {
+                    JSONObject endereco = new JSONObject(myJson.get(k).toString());
+                    // TipoTelefone tipoTelefone, String ddi, String ddd, String numero, String ramal, String contato
+                    Telefone novoTelefone = new Telefone (
+                            TipoTelefone.Celular,
+                            endereco.get("ddi").toString(),
+                            endereco.get("ddd").toString(),
+                            endereco.get("numero").toString(),
+                            endereco.get("ramal").toString(),
+                            endereco.get("contato").toString()
+                    );
+
+                    telefones.add(novoTelefone);
+
+                    System.out.println(endereco.names());
+
+                }
+
+                Contato contatoResponse = new Contato(TipoContato.Pessoal, contato.get("nome").toString(), contato.get("sobrenome").toString());
+                contatosString.add(contatoResponse);
 
                 System.out.println("");
             }
@@ -105,6 +144,8 @@ public class Agenda {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
+
+        return contatosString;
 
     }
 
