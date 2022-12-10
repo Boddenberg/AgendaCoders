@@ -22,6 +22,10 @@ public class AgendaController {
         contatos.remove(contato);
     }
 
+    public void excluirTodosContatos(){
+        contatos.clear();
+    }
+
     public List<Contato> pesquisarNome(String nome) {
         List<Contato> contatosEncontrados = new ArrayList<>();
         for (int i = 0; i < contatos.size(); i++) {
