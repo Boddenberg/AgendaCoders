@@ -13,12 +13,12 @@ public class AgendaController {
         this.contatos = new ArrayList<>();
     }
 
-    public void adicionar(Contato contato) {
+    public void adicionarContato(Contato contato) {
         contatos.add(contato);
     }
 
 
-    public void excluir(Contato contato) {
+    public void excluirContato(Contato contato) {
         contatos.remove(contato);
     }
 
@@ -42,7 +42,7 @@ public class AgendaController {
         return contatosEncontrados;
     }
 
-    public List<Contato> listar(int start, int quantidade) {
+    public List<Contato> listarContatos(int start, int quantidade) {
         if (start < 0 || start >= contatos.size()) {
             start = 0;
         }
