@@ -80,14 +80,14 @@ public class Endereco {
         this.numero = numero;
     }
 
-    public String getFullAddress() {
-        StringBuilder address = new StringBuilder(tipoEndereco.toString() + " " + logradouro + ", " + numero);
-        List<String> atributos = List.of(pais, cep, cidade, bairro, complemento);
-        for (String atributo : atributos) {
-            if (!atributo.isBlank()) address.append(" ").append(atributo);
-        }
-        return address.toString();
-    }
+//    public String getFullAddress() {
+//        StringBuilder address = new StringBuilder(tipoEndereco.toString() + " " + logradouro + ", " + numero);
+//        List<String> atributos = List.of(pais, cep, cidade, bairro, complemento);
+//        for (String atributo : atributos) {
+//            if (!atributo.isBlank()) address.append(" ").append(atributo);
+//        }
+//        return address.toString();
+//    }
 
     public String getComplemento() {
         return complemento;

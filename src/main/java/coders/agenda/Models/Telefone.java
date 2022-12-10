@@ -75,15 +75,15 @@ public class Telefone {
         this.contato = contato;
     }
 
-    public String getFullPhoneNumber() {
-        String phoneNumber = String.format("( %s ) %s", ddd, numero);
-
-        if (!ddi.isBlank()) phoneNumber = String.format("+%s ( %s ) %s", ddi, ddd, numero);
-        if (!ramal.isBlank()) phoneNumber = phoneNumber += " - " + ramal;
-        phoneNumber = "Tipo de telefone: " + tipoTelefone + " => " + phoneNumber;
-
-        return phoneNumber;
-    }
+//    public String getFullPhoneNumber() {
+//        String phoneNumber = String.format("( %s ) %s", ddd, numero);
+//
+//        if (!ddi.isBlank()) phoneNumber = String.format("+%s ( %s ) %s", ddi, ddd, numero);
+//        if (!ramal.isBlank()) phoneNumber = phoneNumber += " - " + ramal;
+//        phoneNumber = "Tipo de telefone: " + tipoTelefone + " => " + phoneNumber;
+//
+//        return phoneNumber;
+//    }
 
     @Override
     public String toString() {
