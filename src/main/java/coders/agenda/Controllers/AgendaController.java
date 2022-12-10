@@ -24,9 +24,19 @@ public class AgendaController {
         new AgendaDAO().excluirContato(contato);
     }
 
+    public void editarContato(Contato contato){
+//        new AgendaDAO().
+    }
+
     public void excluirTodosContatos() {
 //        new AgendaDAO().excluirTodosContatos();
     }
+
+    public void listarContatos(){
+//        new AgendaDAO().listarDados();
+    }
+
+
 
     public List<Contato> pesquisarNome(String nome) throws IOException {
         List<Contato> contatosEncontrados = new ArrayList<>();
@@ -38,6 +48,8 @@ public class AgendaController {
         }
         return contatosEncontrados;
     }
+
+
 
     public List<Contato> pesquisarEmail(String email) {
         List<Contato> contatosEncontrados = new ArrayList<>();
