@@ -1,6 +1,7 @@
 package coders.agenda.Views;
 
 import coders.agenda.Enums.TipoContato;
+import coders.agenda.Enums.TipoEndereco;
 import coders.agenda.Enums.TipoTelefone;
 import coders.agenda.Models.Contato;
 import coders.agenda.Models.Endereco;
@@ -80,7 +81,6 @@ public class Agenda {
                 if (typeOption < 0 || typeOption >= TipoContato.values().length)
                     throw new InvalidParams("tipo do contato");
 
-
                 TipoContato contactType = TipoContato.Pessoal;
 
                 for (TipoContato type : TipoContato.values()) {
@@ -105,6 +105,8 @@ public class Agenda {
                     default:
                         System.out.print("==== Opção inválida ====\n");
                 }
+
+                //cadastro de telefone
 
                 int newContactPhone = menuCreator.exec("Deseja cadastrar um endereço?", "sim", "não");
 
@@ -154,7 +156,6 @@ public class Agenda {
                 if (typeOption < 0 || typeOption >= TipoTelefone.values().length)
                     throw new InvalidParams("tipo do contato");
 
-
                 TipoTelefone tipoTelefone = TipoTelefone.Celular;
 
                 for (TipoTelefone type : TipoTelefone.values()) {
@@ -200,17 +201,146 @@ public class Agenda {
                 }
 
 
+            } catch (InvalidParams ex) {
+                System.out.println(ex.getMessage());
+                isInvalid = true;
+
             } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+                isInvalid = true;
             }
+
         } while (isInvalid);
 
 
     }
 
     private static void cadastrarEndereco(List<Endereco> enderecos) {
+
+        int novoEndereco = 0;
+        boolean isInvalid;
+        do {
+            isInvalid = false;
+            try {
+
+                System.out.println("Informe o tipo do contato");
+
+                for (TipoEndereco tipo : TipoEndereco.values()) {
+                    System.out.printf("-> [%s] %s\n", tipo.ordinal(), tipo.name());
+                }
+
+                System.out.print("Escolha uma opção: ");
+                int typeOption = Input.integer();
+                System.out.print("\n");
+
+                if (typeOption < 0 || typeOption >= TipoEndereco.values().length)
+                    throw new InvalidParams("tipo do contato");
+
+
+                TipoEndereco tipoEndereco = TipoEndereco.Residencial;
+
+                for (TipoEndereco type : TipoEndereco.values()) {
+                    if (typeOption == type.ordinal()) {
+                        tipoEndereco = type;
+                    }
+                }
+
+                if (tipoEndereco.equals(TipoEndereco.Virtual)) {
+                    String email = Input.stringNotNullable("email", 3);
+
+                    List<String> emails = new ArrayList<>();
+                    emails.add(email);
+
+                    Endereco enderecoVirtual = new Endereco(tipoEndereco, email);
+                    enderecos.add(enderecoVirtual);
+
+                    novoEndereco = menuCreator.exec("Deseja cadastrar outro endereço?", "Não", "Sim");
+
+                    switch (novoEndereco) {
+                        case 1:
+                            isInvalid = true;
+                            break;
+                        case 0:
+                            break;
+                        default:
+                            System.out.print("==== Opção inválida ====\n");
+                    }
+                    System.out.println("");
+                    continue;
+                }
+
+
+                int tipoCadastro = menuCreator.exec("Cadatro rápido ou completo?", "Rápido", "Completo");
+
+                String logradouro = Input.stringNotNullable("logradouro", 3);
+                String numero = Input.stringNotNullable("numero", 3);
+                String complemento = Input.string("complemento (opcional)");
+
+                switch (tipoCadastro) {
+                    case 1:
+                        Endereco enderecoSimples = new Endereco(tipoEndereco, logradouro, numero, complemento);
+                        enderecos.add(enderecoSimples);
+
+                        break;
+                    case 2:
+                        String bairro = Input.stringNotNullable("bairro", 3);
+                        String cidade = Input.stringNotNullable("cidade", 3);
+                        String uf = Input.stringNotNullable("UF", 3);
+                        String cep = Input.stringNotNullable("CEP", 3);
+                        String pais = Input.stringNotNullable("país", 3);
+
+                        Endereco enderecoCompleto = new Endereco(tipoEndereco, logradouro, numero, complemento, bairro, cidade, uf, cep, pais);
+                        enderecos.add(enderecoCompleto);
+
+                        break;
+                    default:
+                        System.out.print("==== Opção inválida ====\n");
+                }
+
+                novoEndereco = menuCreator.exec("Deseja cadastrar outro contato telefonico?", "Não", "Sim");
+
+                switch (novoEndereco) {
+                    case 0:
+                        break;
+                    case 1:
+                        isInvalid = true;
+                        break;
+                    default:
+                        System.out.print("==== Opção inválida ====\n");
+                }
+
+
+            } catch (InvalidParams ex) {
+                System.out.println(ex.getMessage());
+                isInvalid = true;
+
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+                isInvalid = true;
+            }
+        } while (isInvalid);
     }
 
     private static void listarContatos() {
+
+        boolean isInvalid;
+        int requestPool = 0;
+        do {
+            isInvalid = false;
+
+            if (requestPool >= 3) {
+                break;
+            }
+
+            try {
+                //Chamar contatos. toString
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+                requestPool += 1;
+                isInvalid = true;
+            }
+        } while (isInvalid);
+
     }
 
     private static void listarContatosPorNome() {

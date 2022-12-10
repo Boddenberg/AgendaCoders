@@ -75,8 +75,8 @@ public class Contato {
         return telefones;
     }
 
-    public void setTelefones(List<Telefone> telefones) {
-        this.telefones = telefones;
+    public void adicionarTelefone(Telefone  telefone) {
+        this.telefones.add(telefone);
     }
 
     public String toString() {
