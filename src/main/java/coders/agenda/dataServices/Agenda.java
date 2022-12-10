@@ -90,9 +90,6 @@ public class Agenda {
                 List<Telefone> telefones = new ArrayList<>();
 
                 JSONObject contato = new JSONObject(data.get(i));
-                System.out.println();
-                System.out.println(c);
-                System.out.println(contato.get("sobrenome"));
 
                 JSONArray getEnderecos = new JSONArray(contato.get("enderecos").toString());
                 for (int j = 0; j < getEnderecos.length(); j++) {
