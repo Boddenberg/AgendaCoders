@@ -40,7 +40,7 @@ public class AgendaController {
 
     public List<Contato> pesquisarNome(String nome) throws IOException {
         List<Contato> contatosEncontrados = new ArrayList<>();
-        List<Contato> contatos = new AgendaDAO().pegarDados();
+        List<Contato> contatos = new AgendaDAO().listarDados();
         for (int i = 0; i < contatos.size(); i++) {
             if (contatos.get(i).getNome().contains(nome)) {
                 contatosEncontrados.add(contatos.get(i));
