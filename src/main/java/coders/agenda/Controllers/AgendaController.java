@@ -16,20 +16,20 @@ public class AgendaController {
     }
 
     public void adicionarContato(Contato contato) throws IOException {
-        new AgendaDAO().AddToBase(contato);
+//        new AgendaDAO().adicionarDados(contato);
     }
 
 
-    public void excluirContato(Contato contato) throws IOException {
-        new AgendaDAO().excluirContato(contato);
+    public void excluirContato(int id) throws IOException {
+//        new AgendaDAO().excluirContato(id);
     }
 
-    public void editarContato(Contato contato){
-//        new AgendaDAO().
+    public void editarContato(Contato contato, int id){
+//        new AgendaDAO().editarDados(Contato contato, int id);
     }
 
     public void excluirTodosContatos() {
-//        new AgendaDAO().excluirTodosContatos();
+//        new AgendaDAO().limparAgenda();
     }
 
     public void listarContatos(){
