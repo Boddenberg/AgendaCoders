@@ -29,8 +29,8 @@ public class AgendaController {
 //        new AgendaDAO().excluirContato(id);
     }
 
-    public void editarContato(Contato contato, int id){
-//        new AgendaDAO().editarDados(Contato contato, int id);
+    public void editarContato(Contato contato, int id) throws IOException {
+        new AgendaDAO().editarDados(contato, id);
     }
 
     public void excluirTodosContatos() {
