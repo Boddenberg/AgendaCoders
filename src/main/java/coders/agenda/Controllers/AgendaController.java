@@ -1,6 +1,11 @@
 package coders.agenda.Controllers;
 
+import coders.agenda.Enums.TipoContato;
+import coders.agenda.Enums.TipoEndereco;
+import coders.agenda.Enums.TipoTelefone;
 import coders.agenda.Models.Contato;
+import coders.agenda.Models.Endereco;
+import coders.agenda.Models.Telefone;
 import coders.agenda.dataServices.AgendaDAO;
 
 import java.io.IOException;
@@ -16,7 +21,7 @@ public class AgendaController {
     }
 
     public void adicionarContato(Contato contato) throws IOException {
-//        new AgendaDAO().adicionarDados(contato);
+        new AgendaDAO().adicionarDados(contato);
     }
 
 
@@ -81,6 +86,24 @@ public class AgendaController {
         }
         return contatosEncontrados;
     }
+
+    public Contato cadastrarContato(TipoContato tipoContato, String nome, String sobrenome, List<Endereco> enderecos, List<Telefone> telefones){
+        Contato contato = new Contato(tipoContato, nome, sobrenome, enderecos, telefones);
+        return contato;
+    }
+
+    public Endereco cadastrarEndereco(TipoEndereco tipoEndereco, String logradouro, String numero, String complemento, String bairro, String cidade, String uf, String cep, String  pais){
+        Endereco endereco = new Endereco(tipoEndereco, logradouro, numero, complemento, bairro, cidade, uf, cep, pais);
+        return endereco;
+    }
+
+    public Telefone cadastrarTelefone(TipoTelefone tipoTelefone, String ddi, String ddd, String numero, String ramal, String contato){
+        Telefone telefone = new Telefone(tipoTelefone, ddi, ddd, numero, ramal, contato);
+        return telefone;
+    }
+
+
+
 
 
 }
