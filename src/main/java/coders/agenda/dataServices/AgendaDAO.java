@@ -42,10 +42,13 @@ public class AgendaDAO {
             List<Telefone> telefones = new ArrayList<>();
 
             JSONObject contato = new JSONObject(data.get(i));
+            if(contato.get("tipoContato").toString().isBlank()) throw new IOException(" Erro na listagem de dados. tipoContato está nulo na base");
 
             JSONArray listaEnderecos = new JSONArray(contato.get("enderecos").toString());
             for (int j = 0; j < listaEnderecos.length(); j++) {
                 JSONObject endereco = new JSONObject(listaEnderecos.get(j).toString());
+
+                if(endereco.get("tipoEndereco").toString().isBlank()) throw new IOException(" Erro na listagem de dados. tipoEndereco está nulo na base");
 
                 TipoEndereco tipoEndereco = null;
 
@@ -73,6 +76,8 @@ public class AgendaDAO {
             JSONArray listaTelefones = new JSONArray(contato.get("telefones").toString());
             for (int k = 0; k < listaTelefones.length(); k++) {
                 JSONObject telefone = new JSONObject(listaTelefones.get(k).toString());
+
+                if(telefone.get("tipoTelefone").toString().isBlank()) throw new IOException(" Erro na listagem de dados. tipoTelefone está nulo na base");
 
                 TipoTelefone tipoTelefone = null;
 
