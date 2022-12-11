@@ -43,12 +43,20 @@ public class AgendaDAO {
 
             JSONObject contato = new JSONObject(data.get(i));
 
-            JSONArray getEnderecos = new JSONArray(contato.get("enderecos").toString());
-            for (int j = 0; j < getEnderecos.length(); j++) {
-                JSONObject endereco = new JSONObject(getEnderecos.get(j).toString());
+            JSONArray listaEnderecos = new JSONArray(contato.get("enderecos").toString());
+            for (int j = 0; j < listaEnderecos.length(); j++) {
+                JSONObject endereco = new JSONObject(listaEnderecos.get(j).toString());
+
+                TipoEndereco tipoEndereco = null;
+
+                for (TipoEndereco tipo : TipoEndereco.values()) {
+                    if (endereco.get("tipoEndereco").toString().equals(tipo.name())) {
+                        tipoEndereco = tipo;
+                    }
+                }
 
                 Endereco novoEndereco = new Endereco(
-                        TipoEndereco.Residencial,
+                        tipoEndereco,
                         endereco.get("logradouro").toString(),
                         endereco.get("numero").toString(),
                         endereco.get("complemento").toString(),
@@ -62,23 +70,39 @@ public class AgendaDAO {
                 enderecos.add(novoEndereco);
             }
 
-            JSONArray myJson = new JSONArray(contato.get("telefones").toString());
-            for (int k = 0; k < myJson.length(); k++) {
-                JSONObject endereco = new JSONObject(myJson.get(k).toString());
-                // TipoTelefone tipoTelefone, String ddi, String ddd, String numero, String ramal, String contato
+            JSONArray listaTelefones = new JSONArray(contato.get("telefones").toString());
+            for (int k = 0; k < listaTelefones.length(); k++) {
+                JSONObject telefone = new JSONObject(listaTelefones.get(k).toString());
+
+                TipoTelefone tipoTelefone = null;
+
+                for (TipoTelefone tipo : TipoTelefone.values()) {
+                    if (telefone.get("tipoTelefone").toString().equals(tipo.name())) {
+                        tipoTelefone = tipo;
+                    }
+                }
+
                 Telefone novoTelefone = new Telefone(
-                        TipoTelefone.Celular,
-                        endereco.get("ddi").toString(),
-                        endereco.get("ddd").toString(),
-                        endereco.get("numero").toString(),
-                        endereco.get("ramal").toString(),
-                        endereco.get("contato").toString()
+                        tipoTelefone,
+                        telefone.get("ddi").toString(),
+                        telefone.get("ddd").toString(),
+                        telefone.get("numero").toString(),
+                        telefone.get("ramal").toString(),
+                        telefone.get("contato").toString()
                 );
 
                 telefones.add(novoTelefone);
             }
 
-            Contato contatoResponse = new Contato(TipoContato.Pessoal, contato.get("nome").toString(), contato.get("sobrenome").toString());
+            TipoContato tipoContato = null;
+
+            for (TipoContato tipo : TipoContato.values()) {
+                if (contato.get("tipoContato").toString().equals(tipo.name())) {
+                    tipoContato = tipo;
+                }
+            }
+
+            Contato contatoResponse = new Contato(tipoContato, contato.get("nome").toString(), contato.get("sobrenome").toString(), enderecos, telefones);
             contatosString.add(contatoResponse);
 
             System.out.println("");

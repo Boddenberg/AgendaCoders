@@ -27,16 +27,17 @@ public class Labbing {
 //            Contato mock = new Contato(TipoContato.Pessoal, "Adolfo", "Pentellis", endereços, telefones);
 //            new AgendaDAO().adicionarDados(mock);
 
-//            List<Contato>teste = new AgendaDAO().listarDados();
-//            System.out.println(teste.get(0).getFullName());
+            List<Contato>teste = new AgendaDAO().listarDados();
+            System.out.println(teste.get(0).getFullName());
+            System.out.println(teste.get(0).getEnderecos().get(0).getLogradouro());
 
 
-            new AgendaDAO().excluirDados(1);
+
+//            new AgendaDAO().excluirDados(1);
 
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
-            System.out.println(" O animal, não sabe ler não?");
         }
     }
 }
