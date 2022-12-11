@@ -87,10 +87,23 @@ public class AgendaController {
         return contatosEncontrados;
     }
 
+
+
     public Contato cadastrarContato(TipoContato tipoContato, String nome, String sobrenome, List<Endereco> enderecos, List<Telefone> telefones){
         Contato contato = new Contato(tipoContato, nome, sobrenome, enderecos, telefones);
         return contato;
     }
+
+    public Contato cadastrarContato(TipoContato tipoContato, String nome){
+        if(tipoContato != null && !nome.isBlank()) {
+            Contato contato = new Contato(tipoContato, nome);
+            return contato;
+        } else {
+            System.out.println("Informações incorretas!");
+            return null;
+        }
+    }
+
 
     public Endereco cadastrarEndereco(TipoEndereco tipoEndereco, String logradouro, String numero, String complemento, String bairro, String cidade, String uf, String cep, String  pais){
         Endereco endereco = new Endereco(tipoEndereco, logradouro, numero, complemento, bairro, cidade, uf, cep, pais);
