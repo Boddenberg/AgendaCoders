@@ -4,3 +4,4 @@
 - Filipe Boddenberg
 - Murilo Schmalfuss
 - Renan Araújo
+- Bruno Santana Lopes
